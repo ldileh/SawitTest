@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Sawit Test</string>
+    <string name="text_take_picture">Take Picture</string>
+    <string name="text_stop">Stop Processing</string>
+    <string name="text_process_data">Next</string>
+    <string name="text_written_text">Written Text</string>
+    <string name="text_distance_km">Distance (Km)</string>
+    <string name="text_estimated_time">Estimated Time</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ProgressDialog">
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@drawable/bg_progress_dialog</item>
+    </style>
+</resources>

@@ -1,0 +1,64 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk ConfigData.sdk
+
+    defaultConfig {
+        minSdk ConfigData.minSdk
+        targetSdk ConfigData.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    viewBinding {
+        enabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = ConfigData.kotlinJvmTarget
+    }
+}
+
+dependencies {
+    // android libs
+    implementation(Dependencies.appCompat)
+    api(Dependencies.material)
+    api(Dependencies.lifeCycleJava)
+
+    // kotlin
+    api(Dependencies.KotlinCore)
+    api(Dependencies.KotlinStdlib)
+    api(Dependencies.KotlinCoroutinesCore)
+    api(Dependencies.KotlinCoroutinesAndroid)
+
+    // retrofit
+    api(Dependencies.RetrofitOkhttp)
+    api(Dependencies.RetrofitCore)
+    api(Dependencies.RetrofitLoggingInterceptor)
+    api(Dependencies.RetrofitConverterScalars)
+    api(Dependencies.RetrofitConverterGson)
+
+    // glide
+    api(Dependencies.GlideCore)
+    kapt(Dependencies.GlideCompiler)
+
+    // unit testing
+    api(Dependencies.jUnit)
+
+    // timber
+    api(Dependencies.Timber)
+}

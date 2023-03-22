@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- custom style for view as global -->
+        <item name="android:textViewStyle">@style/DefaultTextStyle</item>
+    </style>
+
+    <style name="ButtonDefault" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="ButtonDefault.White" parent="ButtonDefault">
+        <item name="android:drawable">@drawable/bg_round_white</item>
+    </style>
+
+    <style name="DefaultTextStyle">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="ListItemDefault">
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+</resources>

@@ -1,0 +1,109 @@
+plugins{
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk ConfigData.sdk
+
+    defaultConfig {
+        applicationId "com.example.sawit"
+        minSdk ConfigData.minSdk
+        targetSdk ConfigData.targetSdk
+        versionCode ConfigData.versionCode
+        versionName ConfigData.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug{
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SERVER_URL", ConfigData.baseUrlDev
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "SERVER_URL", ConfigData.baseUrlProd
+        }
+    }
+    flavorDimensions "version"
+    productFlavors {
+        demo {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension "version"
+            applicationIdSuffix ".demo"
+        }
+        full {
+            dimension "version"
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+    viewBinding {
+        enabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = ConfigData.kotlinJvmTarget
+    }
+    kapt{
+        includeCompileClasspath false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(":core")
+
+    // android libs
+    implementation(Dependencies.appCompat)
+    implementation(Dependencies.androidSupport)
+
+    // hilt
+    implementation(Dependencies.Hilt)
+    implementation(Dependencies.HiltActivity)
+    implementation(Dependencies.HiltFragment)
+    implementation(Dependencies.HiltViewModelCompiler)
+    kapt(Dependencies.HiltCompiler)
+
+    // room database
+    implementation(Dependencies.RoomRuntime)
+    kapt(Dependencies.RoomCompiler)
+
+    // lifecycle
+    implementation(Dependencies.LifecycleLiveData)
+    implementation(Dependencies.LifecycleViewModel)
+
+    // unit testing
+    implementation(Dependencies.jUnit)
+
+    // parceler
+    implementation(Dependencies.ParcelerApi)
+    kapt(Dependencies.Parceler)
+
+    // tesseract
+    implementation(Dependencies.Tesseract)
+}
+
+repositories {
+    mavenCentral()
+}
+
+kapt {
+    correctErrorTypes true
+}
